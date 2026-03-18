@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dott.ssa Caterina Zamboni | Biologa Nutrizionista</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-green: #d1e7d1;
+            --brand-cream: #f5e6d3;
+            --brand-brown: #6d4c41;
+            --brand-dark-brown: #4e342e;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--brand-cream);
+            color: var(--brand-dark-brown);
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, .nav-link {
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .bg-sage { background-color: var(--brand-green); }
+        .text-brown { color: var(--brand-brown); }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .nav-glass {
+            background: rgba(245, 230, 211, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(109, 76, 65, 0.1);
+        }
+
+        /* Dropdown Menu Interaction */
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 200px;
+            background: white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-radius: 1rem;
+            padding: 0.5rem 0;
+            z-index: 100;
+            margin-top: 0.5rem;
+            border: 1px solid var(--brand-green);
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-primary {
+            background-color: var(--brand-brown);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--brand-dark-brown);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(109, 76, 65, 0.3);
+        }
+
+        .cta-free-section {
+            background-color: var(--brand-green);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-blob {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+
+        /* Mobile Menu */
+        #mobile-menu {
+            display: none;
+            background: var(--brand-cream);
+        }
+        #mobile-menu.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 nav-glass">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo SVG Realistico -->
+            <a href="#home" class="flex items-center gap-3 group">
+                <div class="w-12 h-12">
+                    <svg viewBox="0 0 100 100" class="w-full h-full fill-[#6d4c41] drop-shadow-sm">
+                        <!-- Biscotto morsicato con gocce -->
+                        <path d="M50,5 C25.1,5 5,25.1 5,50 C5,74.9 25.1,95 50,95 C57.4,95 64.4,93.2 70.6,90 C68.2,87.2 66.8,83.8 66.8,80 C66.8,71.7 73.5,65 81.8,65 C84.6,65 87.2,65.8 89.4,67.1 C93,62.2 95,56.3 95,50 C95,25.1 74.9,5 50,5 Z M35,32 C37.8,32 40,34.2 40,37 C40,39.8 37.8,42 35,42 C32.2,42 30,39.8 30,37 C30,34.2 32.2,32 35,32 Z M65,22 C67.8,22 70,24.2 70,27 C70,29.8 67.8,32 65,32 C62.2,32 60,29.8 60,27 C60,24.2 62.2,22 65,22 Z M45,68 C47.8,68 50,70.2 50,73 C50,75.8 47.8,78 45,78 C42.2,78 40,75.8 40,73 C40,70.2 42.2,68 45,68 Z M85,38 C86.7,38 88,39.3 88,41 C88,42.7 86.7,44 85,44 C83.3,44 82,42.7 82,41 C82,39.3 83.3,38 85,38 Z M22,55 C23.7,55 25,56.3 25,58 C25,59.7 23.7,61 22,61 C20.3,61 19,59.7 19,58 C19,56.3 20.3,55 22,55 Z"/>
+                    </svg>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold text-lg leading-none tracking-tight uppercase">Caterina Zamboni</span>
+                    <span class="text-[10px] tracking-[0.25em] opacity-60">Nutrizionista</span>
+                </div>
+            </a>
+            
+            <!-- Menu Desktop -->
+            <div class="hidden lg:flex items-center space-x-10">
+                <a href="#home" class="nav-link hover:text-brown transition font-semibold text-sm uppercase tracking-wider">Home</a>
+                
+                <div class="dropdown">
+                    <button class="nav-link flex items-center gap-1 hover:text-brown transition font-semibold text-sm uppercase tracking-wider py-4">
+                        Percorsi <i class="fas fa-chevron-down text-[10px]"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="#chi-sono" class="block px-6 py-3 text-sm hover:bg-sage/30 transition">Chi Sono</a>
+                        <a href="#metodo" class="block px-6 py-3 text-sm hover:bg-sage/30 transition">Il Mio Metodo</a>
+                    </div>
+                </div>
+
+                <a href="#blog" class="nav-link hover:text-brown transition font-semibold text-sm uppercase tracking-wider">Blog</a>
+                <a href="#contatti" class="btn-primary px-7 py-3 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg">Prenota Visita</a>
+            </div>
+
+            <!-- Hamburger Mobile -->
+            <button class="lg:hidden text-brown text-2xl" onclick="toggleMenu()">
+                <i class="fas fa-bars" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- Menu Mobile Overlay -->
+        <div id="mobile-menu" class="lg:hidden border-t border-brown/10 shadow-xl overflow-hidden">
+            <div class="flex flex-col p-6 space-y-4">
+                <a href="#home" class="font-bold py-2" onclick="toggleMenu()">Home</a>
+                <a href="#chi-sono" class="font-bold py-2" onclick="toggleMenu()">Chi Sono</a>
+                <a href="#metodo" class="font-bold py-2" onclick="toggleMenu()">Metodo</a>
+                <a href="#blog" class="font-bold py-2" onclick="toggleMenu()">Blog</a>
+                <a href="#contatti" class="btn-primary text-center py-4 rounded-xl font-bold" onclick="toggleMenu()">Prenota Ora</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section id="home" class="min-h-screen flex items-center pt-24">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+            <div class="reveal active">
+                <span class="text-brown/50 font-bold uppercase tracking-[0.3em] text-xs">Nutrizione Consapevole</span>
+                <h1 class="text-6xl md:text-8xl font-bold mt-6 leading-[0.9] tracking-tighter">Nutri il tuo <br><span class="text-white drop-shadow-[0_2px_2px_rgba(109,76,65,0.4)]">Benessere</span>.</h1>
+                <p class="text-xl mt-8 opacity-80 leading-relaxed max-w-lg">Oltre la dieta. Un approccio empatico e scientifico per riscoprire il piacere del cibo senza sensi di colpa.</p>
+                <div class="mt-12 flex gap-6">
+                    <a href="#contatti" class="btn-primary px-10 py-5 rounded-2xl font-bold text-lg">Inizia Oggi</a>
+                    <a href="#blog" class="flex items-center gap-3 font-bold hover:gap-5 transition-all group">
+                        Vai al Blog <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="relative reveal active delay-200">
+                <div class="bg-sage rounded-[3rem] w-full aspect-square flex items-center justify-center p-12 overflow-hidden relative">
+                    <!-- Logo Grande Animato -->
+                    <svg viewBox="0 0 100 100" class="w-64 h-64 fill-[#6d4c41] opacity-90 animate-pulse">
+                         <path d="M50,5 C25.1,5 5,25.1 5,50 C5,74.9 25.1,95 50,95 C57.4,95 64.4,93.2 70.6,90 C68.2,87.2 66.8,83.8 66.8,80 C66.8,71.7 73.5,65 81.8,65 C84.6,65 87.2,65.8 89.4,67.1 C93,62.2 95,56.3 95,50 C95,25.1 74.9,5 50,5 Z M35,32 C37.8,32 40,34.2 40,37 C40,39.8 37.8,42 35,42 C32.2,42 30,39.8 30,37 C30,34.2 32.2,32 35,32 Z M65,22 C67.8,22 70,24.2 70,27 C70,29.8 67.8,32 65,32 C62.2,32 60,29.8 60,27 C60,24.2 62.2,22 65,22 Z M45,68 C47.8,68 50,70.2 50,73 C50,75.8 47.8,78 45,78 C42.2,78 40,75.8 40,73 C40,70.2 42.2,68 45,68 Z"/>
+                    </svg>
+                    <!-- Floaters -->
+                    <div class="absolute top-10 right-10 bg-white/40 backdrop-blur p-4 rounded-2xl">
+                         <i class="fas fa-leaf text-brown"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chi Sono -->
+    <section id="chi-sono" class="py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
+            <div class="reveal">
+                <div class="relative">
+                    <div class="bg-cream rounded-[4rem] h-[600px] w-full overflow-hidden flex items-center justify-center text-brown/20 italic">
+                        [Foto Dott.ssa Zamboni]
+                    </div>
+                    <div class="absolute -bottom-10 -right-10 bg-sage p-12 rounded-[3rem] shadow-xl hidden lg:block">
+                        <p class="text-4xl font-bold text-brown">10+</p>
+                        <p class="text-xs font-bold uppercase tracking-widest">Anni di Esperienza</p>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal delay-200">
+                <h2 class="text-5xl font-bold leading-tight">La tua guida verso <br>una nuova libertà.</h2>
+                <p class="text-lg mt-8 opacity-70 leading-relaxed">Sono Caterina, biologa nutrizionista con la missione di sdoganare il concetto punitivo di "dieta". Il mio obiettivo è insegnarti a dialogare con il tuo corpo, scegliendo gli alimenti che ti fanno sentire energica, vitale e felice.</p>
+                <div class="mt-10 space-y-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-sage/40 rounded-full flex items-center justify-center"><i class="fas fa-check"></i></div>
+                        <span class="font-bold">Protocolli su basi scientifiche</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-sage/40 rounded-full flex items-center justify-center"><i class="fas fa-check"></i></div>
+                        <span class="font-bold">Approccio non-prescrittivo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Metodo -->
+    <section id="metodo" class="py-32 bg-cream">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-5xl font-bold">Come Lavoriamo Insieme</h2>
+                <p class="mt-4 opacity-60">Tre step fondamentali per il tuo percorso di salute.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="bg-white p-12 rounded-[3rem] reveal hover:shadow-2xl transition-all group">
+                    <span class="text-6xl font-black text-sage/20 group-hover:text-sage transition">01</span>
+                    <h3 class="text-2xl font-bold mt-6">Primo Incontro</h3>
+                    <p class="mt-4 opacity-60">Un'ora dedicata solo a te: storia clinica, analisi delle abitudini e definizione degli obiettivi reali.</p>
+                </div>
+                <div class="bg-white p-12 rounded-[3rem] reveal delay-200 hover:shadow-2xl transition-all group border-2 border-sage">
+                    <span class="text-6xl font-black text-sage/20 group-hover:text-sage transition">02</span>
+                    <h3 class="text-2xl font-bold mt-6">Piano Su Misura</h3>
+                    <p class="mt-4 opacity-60">Riceverai un file interattivo con ricette, consigli e la tua struttura alimentare flessibile.</p>
+                </div>
+                <div class="bg-white p-12 rounded-[3rem] reveal delay-400 hover:shadow-2xl transition-all group">
+                    <span class="text-6xl font-black text-sage/20 group-hover:text-sage transition">03</span>
+                    <h3 class="text-2xl font-bold mt-6">Follow-up</h3>
+                    <p class="mt-4 opacity-60">Incontri periodici per valutare i cambiamenti e adattare il piano alla tua vita che evolve.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-32 bg-white scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div class="reveal">
+                    <h2 class="text-5xl font-bold italic tracking-tighter">Blog & <span class="text-brown/30">Articoli</span></h2>
+                    <p class="text-lg opacity-60 mt-2">Risorse gratuite per la tua educazione alimentare.</p>
+                </div>
+                <a href="#" class="btn-primary px-8 py-3 rounded-xl text-sm font-bold reveal">Leggi Tutto il Blog</a>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Blog 1 -->
+                <div class="reveal group cursor-pointer">
+                    <div class="h-80 bg-sage/10 rounded-[2.5rem] overflow-hidden relative mb-6">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-30 group-hover:scale-110 transition duration-500">
+                             <i class="fas fa-utensils text-7xl text-brown"></i>
+                        </div>
+                        <div class="absolute top-6 left-6 bg-white px-4 py-1 rounded-full text-xs font-bold shadow-sm">GUIDA</div>
+                    </div>
+                    <h3 class="text-2xl font-bold group-hover:text-brown transition">Intolleranza al Lattosio: Sintomi e Soluzioni</h3>
+                    <p class="mt-3 opacity-60 line-clamp-2">Capire la differenza tra allergia e intolleranza è il primo passo per tornare a mangiare serenamente...</p>
+                    <div class="mt-6 flex items-center gap-2 font-bold text-sm">
+                        Scopri di più <i class="fas fa-arrow-right text-[10px]"></i>
+                    </div>
+                </div>
+                <!-- Blog 2 -->
+                <div class="reveal delay-200 group cursor-pointer">
+                    <div class="h-80 bg-brown/5 rounded-[2.5rem] overflow-hidden relative mb-6">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-30 group-hover:scale-110 transition duration-500">
+                             <i class="fas fa-heart text-7xl text-brown"></i>
+                        </div>
+                        <div class="absolute top-6 left-6 bg-white px-4 py-1 rounded-full text-xs font-bold shadow-sm">METODO</div>
+                    </div>
+                    <h3 class="text-2xl font-bold group-hover:text-brown transition">Mindful Eating: Come mangiare con consapevolezza</h3>
+                    <p class="mt-3 opacity-60 line-clamp-2">Tecniche pratiche per ascoltare il senso di fame e sazietà durante i pasti quotidiani...</p>
+                    <div class="mt-6 flex items-center gap-2 font-bold text-sm">
+                        Scopri di più <i class="fas fa-arrow-right text-[10px]"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION GRATUITA -->
+    <section class="py-32 bg-white">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="cta-free-section p-12 md:p-20 rounded-[4rem] text-center relative reveal">
+                <div class="cta-blob w-64 h-64 top-0 left-0"></div>
+                <div class="cta-blob w-80 h-80 -bottom-20 -right-20 opacity-50"></div>
+                
+                <div class="relative z-10">
+                    <span class="bg-white/40 px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest text-brown">Download Gratuito</span>
+                    <h2 class="text-4xl md:text-6xl font-bold mt-8 text-brown">Vuoi migliorare la tua spesa?</h2>
+                    <p class="text-xl mt-6 text-brown/70 max-w-2xl mx-auto leading-relaxed">Scarica la mia guida esclusiva alla "Spesa Intelligente": impara a leggere le etichette e a scegliere i prodotti migliori al supermercato.</p>
+                    <div class="mt-12 flex flex-col md:flex-row justify-center gap-4">
+                        <input type="email" placeholder="Inserisci la tua email" class="px-8 py-5 rounded-2xl w-full md:w-80 focus:outline-none focus:ring-4 ring-white/30 border-none shadow-xl">
+                        <button class="btn-primary px-10 py-5 rounded-2xl font-bold text-lg shadow-2xl">Scarica Ora Gratis</button>
+                    </div>
+                    <p class="mt-6 text-xs text-brown/50 italic">Unisciti a oltre 500 persone che hanno già iniziato a scegliere meglio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contatti" class="bg-brown text-cream pt-32 pb-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+                <div class="col-span-1 lg:col-span-2">
+                    <div class="flex items-center gap-3 mb-8">
+                         <svg viewBox="0 0 100 100" class="w-12 h-12 fill-cream">
+                            <path d="M50,5 C25.1,5 5,25.1 5,50 C5,74.9 25.1,95 50,95 C57.4,95 64.4,93.2 70.6,90 C68.2,87.2 66.8,83.8 66.8,80 C66.8,71.7 73.5,65 81.8,65 C84.6,65 87.2,65.8 89.4,67.1 C93,62.2 95,56.3 95,50 C95,25.1 74.9,5 50,5 Z"/>
+                        </svg>
+                        <span class="text-2xl font-bold tracking-tighter uppercase">Caterina Zamboni</span>
+                    </div>
+                    <p class="text-xl opacity-60 leading-relaxed max-w-md">Iniziamo a scrivere la storia del tuo nuovo benessere. Prenota una consulenza conoscitiva.</p>
+                    <div class="mt-10 flex gap-4">
+                        <a href="#" class="w-14 h-14 rounded-full border border-cream/20 flex items-center justify-center text-xl hover:bg-cream hover:text-brown transition duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-14 h-14 rounded-full border border-cream/20 flex items-center justify-center text-xl hover:bg-cream hover:text-brown transition duration-300">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="#" class="w-14 h-14 rounded-full border border-cream/20 flex items-center justify-center text-xl hover:bg-cream hover:text-brown transition duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-lg mb-8 underline underline-offset-8 decoration-sage">Navigazione</h4>
+                    <ul class="space-y-4 opacity-70">
+                        <li><a href="#home" class="hover:text-white">Home</a></li>
+                        <li><a href="#chi-sono" class="hover:text-white">Chi Sono</a></li>
+                        <li><a href="#metodo" class="hover:text-white">Il Metodo</a></li>
+                        <li><a href="#blog" class="hover:text-white font-bold">Blog & Risorse</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-lg mb-8 underline underline-offset-8 decoration-sage">Contatti</h4>
+                    <ul class="space-y-4 opacity-70">
+                        <li class="flex items-center gap-3"><i class="fas fa-envelope text-sage"></i> info@caterinazamboni.it</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-map-marker-alt text-sage"></i> Milano / Online</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-phone text-sage"></i> +39 345 000 0000</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-10 border-t border-cream/10 flex flex-col md:flex-row justify-between items-center gap-6 text-sm opacity-40">
+                <p>&copy; 2024 Dott.ssa Caterina Zamboni. P.IVA 0987654321</p>
+                <div class="flex gap-8">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Reveal on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('active');
+            
+            if(menu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+    </script>
+</body>
+</html>
+
