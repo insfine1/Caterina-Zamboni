@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[TITOLO ARTICOLO] | Dott.ssa Caterina Zamboni</title>
+    <meta name="description" content="[BREVE DESCRIZIONE 140-160 caratteri per SEO]">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --brand-green: #d1e7d1;
+            --brand-cream: #f5e6d3;
+            --brand-brown: #6d4c41;
+            --brand-dark-brown: #4e342e;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--brand-cream);
+            color: var(--brand-dark-brown);
+            scroll-behavior: smooth;
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4, .nav-link {
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .bg-sage { background-color: var(--brand-green); }
+        .text-brown { color: var(--brand-brown); }
+        .border-sage { border-color: var(--brand-green); }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .nav-glass {
+            background: rgba(245, 230, 211, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(109, 76, 65, 0.1);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 200px;
+            background: white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-radius: 1rem;
+            padding: 0.5rem 0;
+            z-index: 100;
+            margin-top: 0.5rem;
+            border: 1px solid var(--brand-green);
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-primary {
+            background-color: var(--brand-brown);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--brand-dark-brown);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(109, 76, 65, 0.3);
+        }
+
+        .prose h2 {
+            font-size: 2.5rem;
+            margin-top: 3.5rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.1;
+        }
+
+        .prose h3 {
+            font-size: 1.875rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-meta {
+            font-size: 0.95rem;
+            color: var(--brand-brown);
+            opacity: 0.7;
+        }
+
+        #mobile-menu {
+            display: none;
+            background: var(--brand-cream);
+        }
+        #mobile-menu.active {
+            display: block;
+        }
+
+        .article-hero {
+            background: linear-gradient(to bottom, rgba(109,76,65,0.15), transparent 60%);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── Navigation (uguale al sito principale) ── -->
+    <nav class="fixed w-full z-50 nav-glass">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="/" class="flex items-center gap-3 group">
+                <div class="w-12 h-12">
+                    <svg viewBox="0 0 100 100" class="w-full h-full fill-[#6d4c41] drop-shadow-sm">
+                        <path d="M50,5 C25.1,5 5,25.1 5,50 C5,74.9 25.1,95 50,95 C57.4,95 64.4,93.2 70.6,90 C68.2,87.2 66.8,83.8 66.8,80 C66.8,71.7 73.5,65 81.8,65 C84.6,65 87.2,65.8 89.4,67.1 C93,62.2 95,56.3 95,50 C95,25.1 74.9,5 50,5 Z M35,32 C37.8,32 40,34.2 40,37 C40,39.8 37.8,42 35,42 C32.2,42 30,39.8 30,37 C30,34.2 32.2,32 35,32 Z M65,22 C67.8,22 70,24.2 70,27 C70,29.8 67.8,32 65,32 C62.2,32 60,29.8 60,27 C60,24.2 62.2,22 65,22 Z M45,68 C47.8,68 50,70.2 50,73 C50,75.8 47.8,78 45,78 C42.2,78 40,75.8 40,73 C40,70.2 42.2,68 45,68 Z"/>
+                    </svg>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold text-lg leading-none tracking-tight uppercase">Caterina Zamboni</span>
+                    <span class="text-[10px] tracking-[0.25em] opacity-60">Nutrizionista</span>
+                </div>
+            </a>
+
+            <!-- Menu Desktop -->
+            <div class="hidden lg:flex items-center space-x-10">
+                <a href="/" class="nav-link hover:text-brown transition font-semibold text-sm uppercase tracking-wider">Home</a>
+                
+                <div class="dropdown">
+                    <button class="nav-link flex items-center gap-1 hover:text-brown transition font-semibold text-sm uppercase tracking-wider py-4">
+                        Percorsi <i class="fas fa-chevron-down text-[10px]"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="/#chi-sono" class="block px-6 py-3 text-sm hover:bg-sage/30 transition">Chi Sono</a>
+                        <a href="/#metodo" class="block px-6 py-3 text-sm hover:bg-sage/30 transition">Il Mio Metodo</a>
+                    </div>
+                </div>
+
+                <a href="/blog" class="nav-link hover:text-brown transition font-semibold text-sm uppercase tracking-wider">Blog</a>
+                <a href="/#contatti" class="btn-primary px-7 py-3 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg">Prenota Visita</a>
+            </div>
+
+            <!-- Hamburger -->
+            <button class="lg:hidden text-brown text-2xl" onclick="toggleMenu()">
+                <i class="fas fa-bars" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="lg:hidden border-t border-brown/10 shadow-xl overflow-hidden">
+            <div class="flex flex-col p-6 space-y-4">
+                <a href="/" class="font-bold py-2" onclick="toggleMenu()">Home</a>
+                <a href="/#chi-sono" class="font-bold py-2" onclick="toggleMenu()">Chi Sono</a>
+                <a href="/#metodo" class="font-bold py-2" onclick="toggleMenu()">Metodo</a>
+                <a href="/blog" class="font-bold py-2" onclick="toggleMenu()">Blog</a>
+                <a href="/#contatti" class="btn-primary text-center py-4 rounded-xl font-bold" onclick="toggleMenu()">Prenota Ora</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO ARTICOLO -->
+    <section class="pt-32 pb-16 md:pb-24 article-hero">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="reveal">
+                <div class="inline-block bg-white/60 backdrop-blur px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-brown mb-6">
+                    [CATEGORIA – es. GUIDA / RICETTA / SCIENZA]
+                </div>
+                
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight mb-8">
+                    [TITOLO DELL'ARTICOLO MOLTO LUNGO O CORTO – va bene così]
+                </h1>
+
+                <p class="text-xl md:text-2xl opacity-75 max-w-3xl mx-auto leading-relaxed mb-10">
+                    [Sottotitolo / lead paragraph – 1-2 righe che catturano l'attenzione]
+                </p>
+
+                <div class="flex items-center justify-center gap-8 text-sm article-meta">
+                    <div class="flex items-center gap-2">
+                        <i class="far fa-calendar-alt"></i>
+                        <span>18 Marzo 2026</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="far fa-clock"></i>
+                        <span>12 minuti di lettura</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-tag"></i>
+                        <span>Intolleranze</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTENUTO PRINCIPALE -->
+    <article class="max-w-4xl mx-auto px-6 pb-24 prose prose-lg prose-brown">
+        <div class="reveal">
+
+            <!-- Qui va la copertina grande (opzionale ma molto consigliata) -->
+            <div class="rounded-[2.5rem] overflow-hidden mb-16 shadow-2xl -mx-6 md:mx-0">
+                <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200" 
+                     alt="[descrizione immagine per alt text SEO]" 
+                     class="w-full h-auto object-cover">
+            </div>
+
+            <p>Inizia qui il vero contenuto dell’articolo. Puoi usare paragrafi normali, elenchi puntati, elenchi numerati, citazioni, tabelle, immagini nel testo, ecc.</p>
+
+            <h2>Primo grande paragrafo / argomento</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+
+            <ul class="list-disc pl-6 space-y-3 my-8">
+                <li>Primo punto importante</li>
+                <li>Secondo elemento da evidenziare</li>
+                <li>Terzo aspetto scientifico / pratico</li>
+            </ul>
+
+            <div class="bg-sage/30 p-10 rounded-3xl my-16 border-l-8 border-sage">
+                <p class="text-xl italic font-medium text-brown/80 leading-relaxed">
+                    “Citazione importante o frase chiave che vuoi far risaltare”
+                </p>
+                <p class="text-sm mt-4 opacity-70">— Dott.ssa Caterina Zamboni</p>
+            </div>
+
+            <h3>Sottotitolo di secondo livello</h3>
+            <p>Qui continua il discorso. Puoi inserire un'immagine più piccola nel testo:</p>
+
+            <figure class="my-12">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800" 
+                     alt="Descrizione immagine" 
+                     class="rounded-2xl shadow-xl w-full">
+                <figcaption class="text-center text-sm opacity-60 mt-3 italic">
+                    Didascalia / fonte immagine
+                </figcaption>
+            </figure>
+
+            <h2>Conclusione / Take-away principali</h2>
+            <p>Ultimo paragrafo che riassume e invita all’azione o alla riflessione.</p>
+
+        </div>
+    </article>
+
+    <!-- CTA finale articolo -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-6 text-center reveal">
+            <div class="bg-sage/40 rounded-[3rem] p-12 md:p-16">
+                <h3 class="text-4xl md:text-5xl font-bold mb-8">Ti è piaciuto l’articolo?</h3>
+                <p class="text-xl opacity-80 mb-10 max-w-2xl mx-auto">
+                    Se vuoi portare questi concetti nella tua vita quotidiana con un supporto personalizzato, prenota una consulenza conoscitiva.
+                </p>
+                <a href="/#contatti" class="btn-primary px-12 py-6 rounded-2xl text-xl font-bold inline-block shadow-xl">
+                    Prenota la tua consulenza
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (uguale al principale) -->
+    <footer id="contatti" class="bg-brown text-cream pt-32 pb-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+                <div class="col-span-1 lg:col-span-2">
+                    <div class="flex items-center gap-3 mb-8">
+                        <svg viewBox="0 0 100 100" class="w-12 h-12 fill-cream">
+                            <path d="M50,5 C25.1,5 5,25.1 5,50 C5,74.9 25.1,95 50,95 C57.4,95 64.4,93.2 70.6,90 C68.2,87.2 66.8,83.8 66.8,80 C66.8,71.7 73.5,65 81.8,65 C84.6,65 87.2,65.8 89.4,67.1 C93,62.2 95,56.3 95,50 C95,25.1 74.9,5 50,5 Z"/>
+                        </svg>
+                        <span class="text-2xl font-bold tracking-tighter uppercase">Caterina Zamboni</span>
+                    </div>
+                    <p class="text-xl opacity-60 leading-relaxed max-w-md">Iniziamo a scrivere la storia del tuo nuovo benessere. Prenota una consulenza conoscitiva.</p>
+                    <div class="mt-10 flex gap-4">
+                        <a href="#" class="w-14 h-14 rounded-full border border-cream/20 flex items-center justify-center text-xl hover:bg-cream hover:text-brown transition duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-14 h-14 rounded-full border border-cream/20 flex items-center justify-center text-xl hover:bg-cream hover:text-brown transition duration-300">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="#" class="w-14 h-14 rounded-full border border-cream/20 flex items-center justify-center text-xl hover:bg-cream hover:text-brown transition duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-lg mb-8 underline underline-offset-8 decoration-sage">Navigazione</h4>
+                    <ul class="space-y-4 opacity-70">
+                        <li><a href="/" class="hover:text-white">Home</a></li>
+                        <li><a href="/#chi-sono" class="hover:text-white">Chi Sono</a></li>
+                        <li><a href="/#metodo" class="hover:text-white">Il Metodo</a></li>
+                        <li><a href="/blog" class="hover:text-white font-bold">Blog & Risorse</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-lg mb-8 underline underline-offset-8 decoration-sage">Contatti</h4>
+                    <ul class="space-y-4 opacity-70">
+                        <li class="flex items-center gap-3"><i class="fas fa-envelope text-sage"></i> info@caterinazamboni.it</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-map-marker-alt text-sage"></i> Milano / Online</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-phone text-sage"></i> +39 345 000 0000</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-10 border-t border-cream/10 flex flex-col md:flex-row justify-between items-center gap-6 text-sm opacity-40">
+                <p>© 2026 Dott.ssa Caterina Zamboni. P.IVA 0987654321</p>
+                <div class="flex gap-8">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Reveal on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('active');
+            
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        }
+    </script>
+</body>
+</html>
